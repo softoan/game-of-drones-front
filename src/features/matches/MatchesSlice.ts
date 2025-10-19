@@ -34,7 +34,6 @@ const matchesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // 🔹 Crear partida
       .addCase(createMatchThunk.pending, (state) => {
         state.status = "loading";
         state.loading = true;

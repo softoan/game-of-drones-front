@@ -67,10 +67,10 @@ export const ConfirmDelete = (
 ) => {
   MySwal.fire({
     title: `<p style="font-size:22px;">${title}</p>`,
-    icon: "warning",              // 🔹 Muestra advertencia
+    icon: "warning",
     showCancelButton: true,
     confirmButtonText: "Eliminar",
-    confirmButtonColor: "#d33",   // 🔹 Rojo para el botón eliminar
+    confirmButtonColor: "#d33",
     cancelButtonText: "Cancelar",
     customClass: {
       container: "buggi-swee",
