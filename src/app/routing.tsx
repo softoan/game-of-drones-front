@@ -13,7 +13,7 @@ export const Routing: React.FC = () => {
     >
       <Routes>
         <Route path={env.home} element={<Home />} />
-        <Route path="/game" element={<Game />} />
+        <Route path={env.game} element={<Game />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </Suspense>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
 import { motion } from "framer-motion";
@@ -6,29 +6,43 @@ import { GiRock, GiPaper, GiScissors, GiLightningTrio } from "react-icons/gi";
 import { FaPlay } from "react-icons/fa";
 import PlayerForm from "../../component/player-form/PlayerForm";
 import { registerPlayerThunk } from "../../features/players/PlayersThunks";
+import { useNavigate } from "react-router-dom";
+import { env } from "../../environment/Environment";
+import { createMatchThunk } from "../../features/matches/CreateMatchThunk";
+import { Error } from "../../shared/alert/Alert";
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { playerA, playerB, loading } = useSelector((state: RootState) => state.players);
-
+  const { matchId, status, error } = useSelector((state: RootState) => state.matches);
   const [nameA, setNameA] = useState("");
   const [nameB, setNameB] = useState("");
+  useEffect(() => {
+    if (status === "succeeded" && matchId) {
+      navigate(env.game);
+    }
+  }, [status, matchId, navigate]);
 
   const handleRegister = async (type: "A" | "B", name: string) => {
     if (!name.trim()) {
-      alert("Por favor ingresa el nombre del jugador.");
+      Error("Error", "Por favor ingresa el nombre del jugador.")
       return;
     }
     await dispatch(registerPlayerThunk({ idPlayer: '', name, type }));
-    alert(`Jugador ${name} registrado correctamente.`);
   };
 
-  const handleStart = () => {
+  const handleStart = async () => {
     if (!playerA || !playerB) {
-      alert("Debes registrar ambos jugadores antes de comenzar.");
+      Error("Error", "Debes registrar ambos jugadores antes de comenzar.")
       return;
     }
     console.log("Jugadores listos:", playerA, playerB);
+    await dispatch(createMatchThunk({
+      playerA: playerA.idPlayer,
+      playerB: playerB.idPlayer,
+    }));
+
   };
 
   return (
