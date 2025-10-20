@@ -15,7 +15,7 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { playerA, playerB, loading } = useSelector((state: RootState) => state.players);
-  const { matchId, status, error } = useSelector((state: RootState) => state.matches);
+  const { matchId, status } = useSelector((state: RootState) => state.matches);
   const [nameA, setNameA] = useState("");
   const [nameB, setNameB] = useState("");
   useEffect(() => {

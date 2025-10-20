@@ -1,9 +1,10 @@
  body {
-   height: 100vh;
    margin: 0;
    background: linear-gradient(135deg, #62006f, #1E3A8A);
    background-size: 300% 300%;
    animation: gradientMove 8s ease infinite;
+   overflow: hidden;
+   height: 100vh;
  }
 
  .bcolor-bg {
@@ -29,7 +30,6 @@
  }
 
 
-
  @keyframes spin-slow {
    from {
      transform: rotate(0deg);
@@ -42,4 +42,94 @@
 
  .animate-spin-slow {
    animation: spin-slow 25s linear infinite;
+ }
+
+ /*  Globos */
+ @keyframes gradientShift {
+   0% {
+     background-position: 0% 50%;
+   }
+
+   50% {
+     background-position: 100% 50%;
+   }
+
+   100% {
+     background-position: 0% 50%;
+   }
+ }
+
+ .balloon-container {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+ }
+
+ .balloon {
+   position: absolute;
+   bottom: -150px;
+   width: 60px;
+   height: 80px;
+   border-radius: 50% 50% 45% 45%;
+   opacity: 0.9;
+   animation: floatUp 3s ease-in infinite;
+ }
+
+ .balloon::after {
+   content: "";
+   position: absolute;
+   bottom: -20px;
+   left: 50%;
+   width: 2px;
+   height: 20px;
+   background: rgba(255, 255, 255, 0.8);
+   transform: translateX(-50%);
+ }
+
+ .balloon:nth-child(1) {
+   background: #FF4081;
+   left: 10%;
+   animation-delay: 0s;
+ }
+
+ .balloon:nth-child(2) {
+   background: #4CAF50;
+   left: 25%;
+   animation-delay: 2s;
+ }
+
+ .balloon:nth-child(3) {
+   background: #2196F3;
+   left: 40%;
+   animation-delay: 4s;
+ }
+
+ .balloon:nth-child(4) {
+   background: #FFEB3B;
+   left: 60%;
+   animation-delay: 1s;
+ }
+
+ .balloon:nth-child(5) {
+   background: #FF9800;
+   left: 80%;
+   animation-delay: 3s;
+ }
+
+ @keyframes floatUp {
+   0% {
+     transform: translateY(0) scale(1);
+     opacity: 1;
+   }
+
+   50% {
+     transform: translateY(-50vh) scale(1.05);
+     opacity: 0.9;
+   }
+
+   100% {
+     transform: translateY(-120vh) scale(1);
+     opacity: 0;
+   }
  }

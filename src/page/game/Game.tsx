@@ -56,7 +56,7 @@ const Game: React.FC = () => {
               ? playerB?.name
               : "Empate";
 
-        setWinner(roundWinner??'');
+        setWinner(roundWinner ?? '');
 
         if (roundWinner === "Empate") {
           setMessage("¡Empate en la ronda!");
@@ -103,7 +103,7 @@ const Game: React.FC = () => {
           <FaPowerOff /> Salir
         </button>
       </div>
-      
+
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -157,8 +157,8 @@ const Game: React.FC = () => {
                 onClick={() => handleMove("A", c.name)}
                 disabled={currentTurn !== playerA?.idPlayer}
                 className={`p-4 rounded-full text-4xl transition ${currentTurn === playerA?.idPlayer
-                    ? "bcolor-bg text-black"
-                    : "bg-white/20 hover:bg-white/30"
+                  ? "bcolor-bg text-black"
+                  : "bg-white/20 hover:bg-white/30"
                   }`}
               >
                 {c.icon}
@@ -177,8 +177,8 @@ const Game: React.FC = () => {
                 onClick={() => handleMove("B", c.name)}
                 disabled={currentTurn !== playerB?.idPlayer}
                 className={`p-4 rounded-full text-4xl transition ${currentTurn === playerB?.idPlayer
-                    ? "bcolor-n-bg text-white"
-                    : "bg-white/20 hover:bg-white/30"
+                  ? "bcolor-n-bg text-white"
+                  : "bg-white/20 hover:bg-white/30"
                   }`}
               >
                 {c.icon}
@@ -188,7 +188,8 @@ const Game: React.FC = () => {
         </div>
       </div>
 
-      {winner && (
+
+      {winner && (<>
         <motion.div
           initial={{ scale: 0.7, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -200,6 +201,15 @@ const Game: React.FC = () => {
             {winner === "Empate" ? "¡Es un empate!" : `Ganador: ${winner}`}
           </h3>
         </motion.div>
+
+        <div className="balloon-container absolute inset-0">
+          <div className="balloon"></div>
+          <div className="balloon"></div>
+          <div className="balloon"></div>
+          <div className="balloon"></div>
+          <div className="balloon"></div>
+        </div>
+      </>
       )}
     </div>
   );
