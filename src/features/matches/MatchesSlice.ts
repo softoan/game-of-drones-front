@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { createMatchThunk, fetchMatchByIdThunk, makeMoveThunk } from "./CreateMatchThunk";
+import { createMatchThunk, fetchMatchByIdThunk, makeMoveThunk } from "./CreateMatchTk";
 import type { MatchState } from "../../entities/IMatches";
 
 const initialState: MatchState = {

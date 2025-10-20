@@ -3,7 +3,7 @@ import type { IPlayer } from "../../entities/PlayersTypes";
 import { playerApi } from "../../shared/api/player/playerApi";
 import { Error, Success } from "../../shared/alert/Alert";
 
-export const registerPlayerThunk = createAsyncThunk(
+export const registerPlayerTk = createAsyncThunk(
     "players/register",
     async (
         { name, type }: { idPlayer: string; name: string; type: "A" | "B" },

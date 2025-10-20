@@ -40,3 +40,4 @@ export interface MatchState {
   currentTurn: string | null;
   winner: string | null;
 }
+

@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { GiRock, GiPaper, GiScissors, GiLightningTrio } from "react-icons/gi";
 import { FaPlay } from "react-icons/fa";
 import PlayerForm from "../../component/player-form/PlayerForm";
-import { registerPlayerThunk } from "../../features/players/PlayersThunks";
+import { registerPlayerTk } from "../../features/players/PlayersTk";
 import { useNavigate } from "react-router-dom";
 import { env } from "../../environment/Environment";
-import { createMatchThunk } from "../../features/matches/CreateMatchThunk";
+import { createMatchThunk } from "../../features/matches/CreateMatchTk";
 import { Error } from "../../shared/alert/Alert";
 
 const Home: React.FC = () => {
@@ -29,7 +29,7 @@ const Home: React.FC = () => {
       Error("Error", "Por favor ingresa el nombre del jugador.")
       return;
     }
-    await dispatch(registerPlayerThunk({ idPlayer: '', name, type }));
+    await dispatch(registerPlayerTk({ idPlayer: '', name, type }));
   };
 
   const handleStart = async () => {
@@ -46,7 +46,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-600 via-purple-700 to-pink-600 text-white">
+    <div className="relative flex flex-col items-center justify-center min-h-screen text-white">
       <motion.div
         initial={{ scale: 0.7, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}

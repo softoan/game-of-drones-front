@@ -1,6 +1,6 @@
 import { createSlice,  } from "@reduxjs/toolkit";
 import type { IPlayersState } from "../../entities/PlayersTypes";
-import { registerPlayerThunk } from "./PlayersThunks";
+import { registerPlayerTk } from "./PlayersTk";
 
 const initialState: IPlayersState = {
   playerA: null,
@@ -17,11 +17,11 @@ const playersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(registerPlayerThunk.pending, (state) => {
+      .addCase(registerPlayerTk.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(registerPlayerThunk.fulfilled, (state, action) => {
+      .addCase(registerPlayerTk.fulfilled, (state, action) => {
         const { player, type } = action.payload;
         if (type === "A") {
           state.playerA = { ...player, registered: true };
@@ -30,7 +30,7 @@ const playersSlice = createSlice({
         }
         state.loading = false;
       })
-      .addCase(registerPlayerThunk.rejected, (state, action) => {
+      .addCase(registerPlayerTk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "Error al registrar jugador";
       });

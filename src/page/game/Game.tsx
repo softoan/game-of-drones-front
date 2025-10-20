@@ -7,8 +7,8 @@ import { resetPlayers } from "../../features/players/PlayersSlice";
 import { FaArrowLeft, FaTrophy, FaPowerOff, FaHourglassHalf } from "react-icons/fa";
 import { env } from "../../environment/Environment";
 import { clearMatchState } from "../../features/matches/MatchesSlice";
-import { fetchMatchByIdThunk, makeMoveThunk } from "../../features/matches/CreateMatchThunk";
-import { choices } from "../../shared/Choices";
+import { fetchMatchByIdThunk, makeMoveThunk } from "../../features/matches/CreateMatchTk";
+import { movements } from "../../shared/Movements";
 
 const Game: React.FC = () => {
   const navigate = useNavigate();
@@ -87,7 +87,7 @@ const Game: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-indigo-700 via-purple-700 to-pink-700 text-white p-6 relative">
+    <div className="min-h-screen flex flex-col items-center justify-center text-white p-6 relative">
       <div className="absolute top-4 left-4 flex gap-3">
         <button
           onClick={() => navigate(env.home)}
@@ -150,14 +150,14 @@ const Game: React.FC = () => {
         <div className="flex flex-col items-center">
           <h2 className="text-xl mb-3">{playerA.name}</h2>
           <div className="flex gap-4">
-            {choices.map((c) => (
+            {movements.map((c) => (
               <motion.button
                 key={c.name}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handleMove("A", c.name)}
                 disabled={currentTurn !== playerA?.idPlayer}
                 className={`p-4 rounded-full text-4xl transition ${currentTurn === playerA?.idPlayer
-                    ? "bg-yellow-400 text-black"
+                    ? "bcolor-bg text-black"
                     : "bg-white/20 hover:bg-white/30"
                   }`}
               >
@@ -170,14 +170,14 @@ const Game: React.FC = () => {
         <div className="flex flex-col items-center">
           <h2 className="text-xl mb-3">{playerB.name}</h2>
           <div className="flex gap-4">
-            {choices.map((c) => (
+            {movements.map((c) => (
               <motion.button
                 key={c.name}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handleMove("B", c.name)}
                 disabled={currentTurn !== playerB?.idPlayer}
                 className={`p-4 rounded-full text-4xl transition ${currentTurn === playerB?.idPlayer
-                    ? "bg-yellow-400 text-black"
+                    ? "bcolor-n-bg text-white"
                     : "bg-white/20 hover:bg-white/30"
                   }`}
               >
